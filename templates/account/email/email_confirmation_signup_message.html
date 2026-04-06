@@ -1,0 +1,58 @@
+{% load account %}
+{% user_display user as user_display %}
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { background-color: #F5F2EA; margin: 0; padding: 0; }
+        .container { 
+            background-color: #ffffff; 
+            max-width: 600px; 
+            margin: 40px auto; 
+            padding: 40px; 
+            border: 1px solid #EDE2CF;
+        }
+        .header { border-bottom: 2px solid #4B2E2B; padding-bottom: 10px; margin-bottom: 20px; }
+        .brand-name { color: #4B2E2B; font-size: 24px; font-weight: bold; letter-spacing: 2px; }
+        .button {
+            background-color: #4B2E2B; /* Marrón Base */
+            color: #F5F2EA !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 2px;
+            display: inline-block;
+            font-size: 14px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .footer { color: #5E503F; font-size: 11px; margin-top: 30px; line-height: 1.5; }
+        .accent { color: #6D1F3A; font-weight: bold; } /* Burgundy para acentos */
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <span class="brand-name">QUILLA</span>
+        </div>
+        
+        <h2 style="color: #000000;">Bienvenido, {{ user_display }}.</h2>
+        
+        <p style="color: #5E503F; font-size: 16px;">
+            Gracias por registrarte en nuestra plataforma. Para garantizar la seguridad de tu cuenta y permitir el acceso a nuestras <span class="accent">ediciones especiales</span>, necesitamos confirmar tu identidad.
+        </p>
+
+        <div style="text-align: center; margin: 40px 0;">
+            <a href="{{ activate_url }}" class="button">Verificar Cuenta</a>
+        </div>
+
+        <p style="color: #5E503F;">Si el botón no funciona, utiliza este enlace:</p>
+        <p style="font-size: 11px; color: #6D1F3A;">{{ activate_url }}</p>
+
+        <div class="footer">
+            <hr style="border: 0; border-top: 1px solid #EDE2CF;">
+            <p>© 2026 QUILLA - Premium Leather Goods.<br>
+            Este mensaje es confidencial y ha sido enviado para completar tu registro.</p>
+        </div>
+    </div>
+</body>
+</html>

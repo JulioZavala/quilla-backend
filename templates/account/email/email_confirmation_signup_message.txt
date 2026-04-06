@@ -1,0 +1,17 @@
+{% load account %}
+{% user_display user as user_display %}
+
+¡Bienvenido a QUILLA, {{ user_display }}!
+
+Gracias por unirte a nuestra comunidad de artículos de cuero premium. 
+Para garantizar la seguridad de tu cuenta, por favor confirma tu correo electrónico.
+
+Copia y pega el siguiente enlace en tu navegador para verificar tu cuenta:
+
+{{ activate_url }}
+
+Si no creaste esta cuenta, puedes ignorar este mensaje.
+
+Atentamente,
+El equipo de QUILLA
+Premium Leather Goods
