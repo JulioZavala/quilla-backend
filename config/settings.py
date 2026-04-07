@@ -214,16 +214,16 @@ CORS_ALLOW_ALL_ORIGINS = True
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "https://codi-go-g28-v7gl.vercel.app/",
+    "https://codi-go-g28-v7gl.vercel.app",
 ]
 
 # Para que las cookies viajen entre puertos distintos (5173 -> 8000)
 CORS_ALLOW_CREDENTIALS = True
 
 # 4. Configuración de la cookie CSRF
-CSRF_COOKIE_SAMESITE = "Lax"
+# CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_HTTPONLY = False  # <--- DEBE SER FALSE para que React pueda leerla
-CSRF_COOKIE_SECURE = False  # Solo False para desarrollo local (HTTP)
+# CSRF_COOKIE_SECURE = False  # Solo False para desarrollo local (HTTP)
 
 SESSION_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SECURE = True
