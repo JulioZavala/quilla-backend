@@ -222,7 +222,7 @@ CORS_ALLOW_CREDENTIALS = True
 
 # 4. Configuración de la cookie CSRF
 # CSRF_COOKIE_SAMESITE = "Lax"
-CSRF_COOKIE_HTTPONLY = False  # <--- DEBE SER FALSE para que React pueda leerla
+CSRF_COOKIE_HTTPONLY = True  # <--- DEBE SER FALSE para que React pueda leerla
 # CSRF_COOKIE_SECURE = False  # Solo False para desarrollo local (HTTP)
 
 SESSION_COOKIE_SAMESITE = "None"
