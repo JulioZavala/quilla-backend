@@ -225,6 +225,11 @@ CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_HTTPONLY = False  # <--- DEBE SER FALSE para que React pueda leerla
 CSRF_COOKIE_SECURE = False  # Solo False para desarrollo local (HTTP)
 
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SECURE = True
+CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SECURE = True
+
 # Configuración de comportamiento de cuenta (Allauth)
 ACCOUNT_LOGIN_METHODS = {"email"}  # Login por email
 # ACCOUNT_EMAIL_REQUIRED = True
