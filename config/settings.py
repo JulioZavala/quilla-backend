@@ -192,8 +192,8 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "quilla-auth",  # Nombre de la cookie para el Access Token
     "JWT_AUTH_REFRESH_COOKIE": "quilla-refresh",  # Nombre de la cookie para el Refresh Token
     "JWT_AUTH_HTTPONLY": True,  # Seguridad extra: impide que JS acceda a la cookie
-    "JWT_AUTH_SAMESITE": "Lax",  # Lax permite el envío entre localhost y 127.0.0.1
-    "JWT_AUTH_SECURE": False,  # En desarrollo False, en producción True (HTTPS)
+    "JWT_AUTH_SAMESITE": "None",  # Lax permite el envío entre localhost y 127.0.0.1
+    "JWT_AUTH_SECURE": True,  # En desarrollo False, en producción True (HTTPS)
     "JWT_AUTH_RETURN_EXPIRATION": True,
     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
     "USER_DETAILS_SERIALIZER": "accounts.serializers.UserSerializer",
@@ -210,6 +210,11 @@ REST_AUTH = {
 #     "http://127.0.0.1:5173",
 # ]
 CORS_ALLOW_ALL_ORIGINS = True
+# Para que las cookies viajen entre puertos distintos (5173 -> 8000)
+CORS_ALLOW_CREDENTIALS = True
+
+SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SECURE = True
 
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
@@ -217,18 +222,10 @@ CSRF_TRUSTED_ORIGINS = [
     "https://codi-go-g28-v7gl.vercel.app",
 ]
 
-# Para que las cookies viajen entre puertos distintos (5173 -> 8000)
-CORS_ALLOW_CREDENTIALS = True
-
 # 4. Configuración de la cookie CSRF
-# CSRF_COOKIE_SAMESITE = "Lax"
-CSRF_COOKIE_HTTPONLY = True  # <--- DEBE SER FALSE para que React pueda leerla
-# CSRF_COOKIE_SECURE = False  # Solo False para desarrollo local (HTTP)
-
-SESSION_COOKIE_SAMESITE = "None"
-SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True
+CSRF_COOKIE_HTTPONLY = True  # <--- DEBE SER FALSE para que React pueda leerla
 
 # Configuración de comportamiento de cuenta (Allauth)
 ACCOUNT_LOGIN_METHODS = {"email"}  # Login por email
