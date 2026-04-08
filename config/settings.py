@@ -225,7 +225,7 @@ CSRF_TRUSTED_ORIGINS = [
 # 4. Configuración de la cookie CSRF
 CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True
-CSRF_COOKIE_HTTPONLY = True  # <--- DEBE SER FALSE para que React pueda leerla
+CSRF_COOKIE_HTTPONLY = False  # <--- DEBE SER FALSE para que React pueda leerla
 
 # Configuración de comportamiento de cuenta (Allauth)
 ACCOUNT_LOGIN_METHODS = {"email"}  # Login por email
