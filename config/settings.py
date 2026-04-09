@@ -227,7 +227,7 @@ CSRF_COOKIE_SAMESITE = "None"
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False  # <--- DEBE SER FALSE para que React pueda leerla
 CSRF_COOKIE_NAME = "csrftoken"
-CSRF_HEADER_NAME = "HTTP_X_CSRFTOKEN"
+CSRF_HEADER_NAME = "X-CSRFToken"
 
 # Configuración de comportamiento de cuenta (Allauth)
 ACCOUNT_LOGIN_METHODS = {"email"}  # Login por email
