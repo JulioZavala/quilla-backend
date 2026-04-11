@@ -35,10 +35,8 @@ DEBUG = False
 
 raw_allowed_host = os.getenv("ALLOWED_HOSTS", "")
 ALLOWED_HOSTS = [
-     origin.strip() for origin in raw_allowed_host.split(",") if origin.strip()
+    origin.strip() for origin in raw_allowed_host.split(",") if origin.strip()
 ]
-
-#ALLOWED_HOSTS = ["quilla-backend-pvc8.onrender.com", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -206,11 +204,15 @@ CORS_ALLOW_CREDENTIALS = True
 SESSION_COOKIE_SAMESITE = "None"
 SESSION_COOKIE_SECURE = True
 
+raw_csrf_trusted_origins = os.getenv("CSRF_TRUSTED_ORIGINS", "")
 CSRF_TRUSTED_ORIGINS = [
-    "http://localhost:5173",
-    "http://127.0.0.1:5173",
-    "https://codi-go-g28-v7gl.vercel.app",
+    origin.strip() for origin in raw_csrf_trusted_origins.split(",") if origin.strip()
 ]
+# CSRF_TRUSTED_ORIGINS = [
+#     "http://localhost:5173",
+#     "http://127.0.0.1:5173",
+#     "https://codi-go-g28-v7gl.vercel.app",
+# ]
 
 # 4. Configuración de la cookie CSRF
 CSRF_COOKIE_SAMESITE = "None"
