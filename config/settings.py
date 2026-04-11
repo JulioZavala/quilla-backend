@@ -154,9 +154,9 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 AUTH_USER_MODEL = "accounts.User"
 
 cloudinary.config(
-    cloud_name="CLOUDINARY_CLOUD_NAME",
-    api_key="CLOUDINARY_API_KEY",
-    api_secret="CLOUDINARY_API_SECRET",
+    cloud_name=os.getenv("CLOUDINARY_CLOUD_NAME"),
+    api_key=os.getenv("CLOUDINARY_API_KEY"),
+    api_secret=os.getenv("CLOUDINARY_API_SECRET"),
 )
 
 AUTHENTICATION_BACKENDS = [
@@ -180,7 +180,7 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE": "quilla-auth",  # Nombre de la cookie para el Access Token
     "JWT_AUTH_REFRESH_COOKIE": "quilla-refresh",  # Nombre de la cookie para el Refresh Token
     "JWT_AUTH_HTTPONLY": True,  # Seguridad extra: impide que JS acceda a la cookie
-    "JWT_AUTH_SAMESITE": "None",  # Lax permite el envío entre localhost y 127.0.0.1
+    "JWT_AUTH_SAMESITE": "Lax",  # Lax permite el envío entre localhost y 127.0.0.1
     "JWT_AUTH_SECURE": True,  # En desarrollo False, en producción True (HTTPS)
     "JWT_AUTH_RETURN_EXPIRATION": True,
     "REGISTER_SERIALIZER": "accounts.serializers.CustomRegisterSerializer",
@@ -188,21 +188,20 @@ REST_AUTH = {
     "JWT_AUTH_COOKIE_USE_CSRF": True,
 }
 
-# # Permitimos que tu React hable con el Backend
-# raw_origins = os.getenv("CORS_ALLOWED_ORIGINS", "")
-# CORS_ALLOWED_ORIGINS = [
-#     origin.strip() for origin in raw_origins.split(",") if origin.strip()
-# ]
-# CORS_ALLOWED_ORIGINS = [
-#     "http://localhost:5173",
-#     "http://127.0.0.1:5173",
-# ]
-CORS_ALLOW_ALL_ORIGINS = True
+# Permitimos que tu React hable con el Backend
+raw_cors_allowed_origins = os.getenv("CORS_ALLOWED_ORIGINS", "")
+CORS_ALLOWED_ORIGINS = [
+    origin.strip() for origin in raw_cors_allowed_origins.split(",") if origin.strip()
+]
+
+# CORS_ALLOW_ALL_ORIGINS = True
 # Para que las cookies viajen entre puertos distintos (5173 -> 8000)
 CORS_ALLOW_CREDENTIALS = True
 
-SESSION_COOKIE_SAMESITE = "None"
+SESSION_COOKIE_SAMESITE = "Lax"
 SESSION_COOKIE_SECURE = True
+SESSION_COOKIE_DOMAIN = ".juliozavala.dev"
+CSRF_COOKIE_DOMAIN = ".juliozavala.dev"
 
 raw_csrf_trusted_origins = os.getenv("CSRF_TRUSTED_ORIGINS", "")
 CSRF_TRUSTED_ORIGINS = [
@@ -215,7 +214,7 @@ CSRF_TRUSTED_ORIGINS = [
 # ]
 
 # 4. Configuración de la cookie CSRF
-CSRF_COOKIE_SAMESITE = "None"
+CSRF_COOKIE_SAMESITE = "Lax"
 CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = False  # <--- DEBE SER FALSE para que React pueda leerla
 CSRF_COOKIE_NAME = "csrftoken"
